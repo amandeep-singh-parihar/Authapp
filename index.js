@@ -4,6 +4,10 @@ const app = express(); // use the express application
 require("dotenv").config(); // import the dotenv config which load all the data in .env into process object
 const PORT = process.env.PORT || 3000;
 
+// cookie-parser
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
 app.use(express.json());
 
 // const DBconnect = require("./config/database");
@@ -20,6 +24,6 @@ app.listen(PORT, () => {
 });
 
 // default route
-app.get("/",(req,res)=>{
-    res.send(`<h1>good</h1>`)
-})
+app.get("/", (req, res) => {
+    res.send(`<h1>good</h1>`);
+});

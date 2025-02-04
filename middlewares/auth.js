@@ -4,8 +4,14 @@ require("dotenv").config(); // import the dotenv config , which load all the dat
 // auth middleware for the authentication
 exports.auth = (req, res, next) => {
     try {
-        // extract JWT token from the body as we send it there in the body
-        const token = req.body.token;
+        // console.log("cookie",req.cookies.token);
+        // console.log("body",req.body.token);
+        // console.log("header",req.header("Authorization"));
+
+        // req.body.token-> extract JWT token from the body as we send it there in the body
+        // req.cookies.token -> extract the tooken from the cookie using cookieParser
+        // req.header("Authorization").replace("Bearer ","") -> key value pair where in the key I write Authorization and in value I write Bearer <token>
+        const token = req.body.token || req.cookies.token || req.header("Authorization").replace("Bearer ","");
 
         // if the body does not contain the token
         if (!token) {
